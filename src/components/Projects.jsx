@@ -1,7 +1,15 @@
-import React from 'react'
-import { motion } from 'framer-motion'
+import React, { useRef } from 'react'
+import { Canvas, useFrame } from '@react-three/fiber'
+import { OrbitControls, Html } from '@react-three/drei'
 
-function Projects() {
+function RotatingProjects() {
+  const groupRef = useRef()
+
+  useFrame(({ clock }) => {
+    groupRef.current.rotation.y = clock.getElapsedTime() * 0.1 // Slow rotation
+  })
+
+  const radius = 5
   const projects = [
     {
       title: 'ChatFlow - Real-Time Chat Application',
@@ -48,44 +56,54 @@ function Projects() {
   ]
 
   return (
-    <section id="projects" className="min-h-screen flex items-center justify-center pointer-events-auto py-20">
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="text-center text-white max-w-6xl mx-auto px-6"
-      >
-        <h2 className="text-4xl font-bold mb-12">My Projects</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              whileHover={{ scale: 1.05 }}
-              className="bg-gray-800 p-6 rounded-lg shadow-lg text-left"
-            >
+    <group ref={groupRef}>
+      {projects.map((project, index) => {
+        const angle = (index / projects.length) * Math.PI * 2
+        const x = Math.cos(angle) * radius
+        const z = Math.sin(angle) * radius
+        return (
+          <Html key={index} position={[x, 0, z]} center>
+            <div className="bg-gray-800 p-6 rounded-lg shadow-lg text-white max-w-sm">
               <h3 className="text-xl font-semibold mb-3">{project.title}</h3>
-              <p className="text-gray-300 mb-4">{project.description}</p>
+              <p className="text-gray-300 mb-4 text-sm">{project.description}</p>
               <p className="text-sm text-gray-400 mb-2"><strong>Technologies:</strong> {project.technologies}</p>
               {project.features && (
                 <div className="mb-4">
                   <p className="text-sm font-semibold text-gray-400 mb-1">Key Features:</p>
                   <ul className="text-sm text-gray-300 list-disc list-inside">
-                    {project.features.map((feature, i) => (
+                    {project.features.slice(0, 3).map((feature, i) => (
                       <li key={i}>{feature}</li>
                     ))}
                   </ul>
                 </div>
               )}
               <div className="flex space-x-4 mt-4">
-                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300">Live Demo</a>
+                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 text-sm">Live Demo</a>
                 {project.githubUrl && (
-                  <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300">GitHub</a>
+                  <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 text-sm">GitHub</a>
                 )}
               </div>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
+            </div>
+          </Html>
+        )
+      })}
+    </group>
+  )
+}
+
+function Projects() {
+  return (
+    <section id="projects" className="h-screen relative overflow-hidden flex items-center justify-center">
+      <Canvas camera={{ position: [0, 2, 8] }} className="pointer-events-none absolute inset-0" style={{ height: '100%', width: '100%' }} gl={{ alpha: true, clearColor: 'black' }}>
+        <OrbitControls enableZoom={false} enablePan={false} />
+        <ambientLight intensity={0.7} />
+        <directionalLight position={[0, 0, 5]} />
+        <RotatingProjects />
+      </Canvas>
+      <div className="absolute top-10 left-1/2 transform -translate-x-1/2 text-white text-center pointer-events-auto">
+        <h2 className="text-4xl font-bold">My Projects</h2>
+        <p className="text-lg mt-2">Drag to rotate and explore</p>
+      </div>
     </section>
   )
 }
