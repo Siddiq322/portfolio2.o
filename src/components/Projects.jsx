@@ -6,10 +6,10 @@ function RotatingProjects() {
   const groupRef = useRef()
 
   useFrame(({ clock }) => {
-    groupRef.current.rotation.y = clock.getElapsedTime() * 0.1 // Slow rotation
+    groupRef.current.rotation.y = clock.getElapsedTime() * 0.2 // Slow rotation
   })
 
-  const radius = 5
+  const radius = 6
   const projects = [
     {
       title: 'ChatFlow - Real-Time Chat Application',
@@ -62,8 +62,8 @@ function RotatingProjects() {
         const x = Math.cos(angle) * radius
         const z = Math.sin(angle) * radius
         return (
-          <Html key={index} position={[x, 0, z]} center>
-            <div className="bg-gray-800 p-6 rounded-lg shadow-lg text-white max-w-sm">
+          <Html key={index} position={[x, 0, z]} center transform occlude>
+            <div className="bg-gray-800 p-8 rounded-lg shadow-lg text-white w-80">
               <h3 className="text-xl font-semibold mb-3">{project.title}</h3>
               <p className="text-gray-300 mb-4 text-sm">{project.description}</p>
               <p className="text-sm text-gray-400 mb-2"><strong>Technologies:</strong> {project.technologies}</p>
@@ -94,7 +94,7 @@ function RotatingProjects() {
 function Projects() {
   return (
     <section id="projects" className="h-screen relative overflow-hidden flex items-center justify-center">
-      <Canvas camera={{ position: [0, 2, 8] }} className="pointer-events-none absolute inset-0" style={{ height: '100%', width: '100%' }} gl={{ alpha: true, clearColor: 'black' }}>
+      <Canvas camera={{ position: [0, 2, 10] }} className="pointer-events-none absolute inset-0" style={{ height: '100%', width: '100%' }} gl={{ alpha: true, clearColor: 'black' }}>
         <OrbitControls enableZoom={false} enablePan={false} />
         <ambientLight intensity={0.7} />
         <directionalLight position={[0, 0, 5]} />
