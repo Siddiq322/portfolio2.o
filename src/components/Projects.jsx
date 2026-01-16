@@ -9,7 +9,7 @@ function RotatingProjects() {
     groupRef.current.rotation.y = clock.getElapsedTime() * 0.2 // Slow rotation
   })
 
-  const radius = 4
+  const radius = 6
   const projects = [
     {
       title: 'ChatFlow - Real-Time Chat Application',
@@ -63,11 +63,11 @@ function RotatingProjects() {
         const z = Math.sin(angle) * radius
         return (
           <Html key={index} position={[x, 0, z]} center transform occlude>
-            <div className="bg-gray-800 p-2 rounded-lg shadow-lg text-white w-48 h-64 overflow-hidden flex flex-col justify-between">
+            <div className="bg-gray-800 p-2 rounded-lg shadow-lg text-white w-40 h-56 overflow-hidden flex flex-col justify-between">
               <h3 className="text-xs font-semibold mb-1">{project.title}</h3>
-              <p className="text-gray-300 mb-2 text-xs">{project.description.substring(0, 80)}...</p>
-              <p className="text-xs text-gray-400 mb-1"><strong>Tech:</strong> {project.technologies.substring(0, 40)}...</p>
-              <div className="flex space-x-2 mt-auto">
+              <p className="text-gray-300 mb-1 text-xs">{project.description.substring(0, 60)}...</p>
+              <p className="text-xs text-gray-400 mb-1"><strong>Tech:</strong> {project.technologies.substring(0, 30)}...</p>
+              <div className="flex space-x-1 mt-auto">
                 <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 text-xs">Live</a>
                 {project.githubUrl && (
                   <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 text-xs">GitHub</a>
@@ -84,7 +84,7 @@ function RotatingProjects() {
 function Projects() {
   return (
     <section id="projects" className="h-screen relative overflow-hidden flex items-center justify-center">
-      <Canvas camera={{ position: [0, 2, 8] }} className="pointer-events-none absolute inset-0" style={{ height: '100%', width: '100%' }} gl={{ alpha: true, clearColor: 'black' }}>
+      <Canvas camera={{ position: [0, 2, 10] }} className="pointer-events-none absolute inset-0" style={{ height: '100%', width: '100%' }} gl={{ alpha: true, clearColor: 'black' }}>
         <OrbitControls enableZoom={false} enablePan={false} />
         <ambientLight intensity={0.7} />
         <directionalLight position={[0, 0, 5]} />
