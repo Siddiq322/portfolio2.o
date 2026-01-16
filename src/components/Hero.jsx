@@ -2,9 +2,12 @@ import React, { useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, Stars } from '@react-three/drei'
 import { motion } from 'framer-motion'
+import { useLoader } from '@react-three/fiber'
+import { TextureLoader } from 'three'
 
 const RotatingCube = () => {
   const meshRef = useRef()
+  const texture = useLoader(TextureLoader, 'https://i.postimg.cc/N0VLy2Gb/my-image.jpg')
 
   useFrame(({ clock }) => {
     meshRef.current.rotation.y = clock.getElapsedTime() * 0.5
@@ -14,7 +17,7 @@ const RotatingCube = () => {
   return (
     <mesh ref={meshRef} position={[0, 0, 0]}>
       <boxGeometry args={[2, 2, 2]} />
-      <meshStandardMaterial color="skyblue" />
+      <meshStandardMaterial map={texture} />
     </mesh>
   )
 }
@@ -29,30 +32,30 @@ function Hero() {
         <Stars />
         <RotatingCube />
       </Canvas>
-      <div className="absolute top-20 left-1/2 transform -translate-x-1/2 text-white pointer-events-none text-center z-10">
+      <div className="absolute top-20 left-10 text-white pointer-events-none z-10 max-w-lg">
         <motion.h1
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
-          className="text-5xl md:text-7xl font-bold mb-4"
+          className="text-4xl md:text-6xl font-bold mb-4"
         >
           Shaik Abubakar Siddiq
         </motion.h1>
         <motion.p
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 1 }}
           className="text-xl md:text-2xl mb-8"
         >
-          Full Stack Developer & Cybersecurity Enthusiast
+          Welcome to my Portfolio
         </motion.p>
         <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 1.5 }}
-          className="text-lg md:text-xl text-gray-300 mb-12 max-w-2xl mx-auto"
+          className="text-lg md:text-xl text-gray-300 mb-12"
         >
-          Welcome to my Portfolio - Explore my projects, skills, and experience in web development and cybersecurity.
+          Explore my projects, skills, and experience in web development and cybersecurity.
         </motion.p>
       </div>
       <motion.div
