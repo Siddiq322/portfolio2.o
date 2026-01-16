@@ -80,10 +80,16 @@ function Skills() {
         <directionalLight position={[0, 0, 5]} />
         <RotatingSkills />
       </Canvas>
-      <div className="absolute top-10 left-1/2 transform -translate-x-1/2 text-white text-center pointer-events-auto">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8, rotate: 10 }}
+        whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ amount: 0.5 }}
+        className="absolute top-10 left-1/2 transform -translate-x-1/2 text-white text-center pointer-events-auto"
+      >
         <h2 className="text-4xl font-bold">My Skills</h2>
         <p className="text-lg mt-2">Drag to rotate, scroll to zoom in/out</p>
-      </div>
+      </motion.div>
     </section>
   )
 }
