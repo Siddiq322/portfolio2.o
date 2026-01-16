@@ -74,16 +74,16 @@ function Skills() {
 
   return (
     <section id="skills" className="h-screen relative overflow-hidden flex items-center justify-center">
-      <Canvas camera={{ position: [0, 2, 10] }} className="pointer-events-none absolute inset-0" style={{ height: '100%', width: '100%' }} gl={{ alpha: true, clearColor: 'black' }}>
+      <Canvas camera={{ position: [0, 2, 10] }} className="pointer-events-none absolute inset-0" style={{ height: '100%', width: '100%' }}>
         <OrbitControls enableZoom={true} enablePan={false} minDistance={5} maxDistance={20} />
         <ambientLight intensity={0.7} />
         <directionalLight position={[0, 0, 5]} />
         <RotatingSkills />
       </Canvas>
       <motion.div
-        initial={{ opacity: 0, rotateX: 90, scale: 0.8 }}
-        whileInView={{ opacity: 1, rotateX: 0, scale: 1 }}
-        transition={{ duration: 0.8, type: 'spring' }}
+        initial={{ opacity: 0, y: -30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
         viewport={{ amount: 0.5 }}
         className="absolute top-10 left-1/2 transform -translate-x-1/2 text-white text-center pointer-events-auto"
       >
