@@ -52,8 +52,8 @@ function Skills() {
   ]
 
   return (
-    <section id="skills" className="h-screen relative pb-20">
-      <Canvas camera={{ position: [0, 2, 6] }} className="pointer-events-none" gl={{ alpha: true, clearColor: 'black' }}>
+    <section id="skills" className="min-h-screen relative pb-20 flex items-center justify-center">
+      <Canvas camera={{ position: [0, 2, 6] }} className="pointer-events-none absolute inset-0" gl={{ alpha: true, clearColor: 'black' }}>
         <OrbitControls enableZoom={false} />
         <ambientLight intensity={0.7} />
         <directionalLight position={[0, 0, 5]} />

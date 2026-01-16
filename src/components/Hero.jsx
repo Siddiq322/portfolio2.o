@@ -20,8 +20,8 @@ function RotatingCube() {
 
 function Hero() {
   return (
-    <section id="hero" className="h-screen relative">
-      <Canvas camera={{ position: [0, 0, 5] }} className="pointer-events-none" gl={{ alpha: true, clearColor: 'black' }}>
+    <section id="hero" className="min-h-screen relative flex items-center justify-center">
+      <Canvas camera={{ position: [0, 0, 5] }} className="pointer-events-none absolute inset-0" gl={{ alpha: true, clearColor: 'black' }}>
         <OrbitControls enableZoom={false} />
         <ambientLight intensity={0.5} />
         <directionalLight position={[0, 0, 5]} />

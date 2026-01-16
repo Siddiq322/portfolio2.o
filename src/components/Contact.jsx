@@ -44,7 +44,7 @@ function Contact() {
   }
 
   return (
-    <section id="contact" className="h-screen flex items-center justify-center pointer-events-auto">
+    <section id="contact" className="min-h-screen flex items-center justify-center pointer-events-auto py-20">
       <div className="flex flex-col md:flex-row items-center justify-center w-full max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, x: -50 }}

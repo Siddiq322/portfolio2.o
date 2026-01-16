@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 
 function About() {
   return (
-    <section id="about" className="h-screen flex items-center justify-center pointer-events-auto py-20">
+    <section id="about" className="min-h-screen flex items-center justify-center pointer-events-auto py-20">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}

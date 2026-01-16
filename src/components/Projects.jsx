@@ -48,7 +48,7 @@ function Projects() {
   ]
 
   return (
-    <section id="projects" className="h-screen flex items-center justify-center pointer-events-auto py-20 pt-32">
+    <section id="projects" className="min-h-screen flex items-center justify-center pointer-events-auto py-20">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
