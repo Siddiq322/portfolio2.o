@@ -9,7 +9,7 @@ function RotatingSkills() {
     groupRef.current.rotation.y = clock.getElapsedTime() * 0.15 // Slow rotation
   })
 
-  const radius = 8
+  const radius = 6
   const skillGroups = [
     {
       category: 'Web Development',
@@ -74,7 +74,7 @@ function Skills() {
 
   return (
     <section id="skills" className="h-screen relative overflow-hidden flex items-center justify-center">
-      <Canvas camera={{ position: [0, 2, 12] }} className="pointer-events-none absolute inset-0" style={{ height: '100%', width: '100%' }} gl={{ alpha: true, clearColor: 'black' }}>
+      <Canvas camera={{ position: [0, 2, 10] }} className="pointer-events-none absolute inset-0" style={{ height: '100%', width: '100%' }} gl={{ alpha: true, clearColor: 'black' }}>
         <OrbitControls enableZoom={true} enablePan={false} />
         <ambientLight intensity={0.7} />
         <directionalLight position={[0, 0, 5]} />
