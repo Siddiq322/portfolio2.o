@@ -63,10 +63,10 @@ function RotatingProjects() {
         const z = Math.sin(angle) * radius
         return (
           <Html key={index} position={[x, 0, z]} center transform occlude>
-            <div className="bg-gray-800 p-3 rounded-lg shadow-lg text-white w-64 h-80 overflow-hidden flex flex-col justify-between">
-              <h3 className="text-sm font-semibold mb-2">{project.title}</h3>
-              <p className="text-gray-300 mb-3 text-xs">{project.description}</p>
-              <p className="text-xs text-gray-400 mb-2"><strong>Tech:</strong> {project.technologies}</p>
+            <div className="bg-gray-800 p-2 rounded-lg shadow-lg text-white w-48 h-64 overflow-hidden flex flex-col justify-between">
+              <h3 className="text-xs font-semibold mb-1">{project.title}</h3>
+              <p className="text-gray-300 mb-2 text-xs">{project.description.substring(0, 80)}...</p>
+              <p className="text-xs text-gray-400 mb-1"><strong>Tech:</strong> {project.technologies.substring(0, 40)}...</p>
               <div className="flex space-x-2 mt-auto">
                 <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 text-xs">Live</a>
                 {project.githubUrl && (
