@@ -63,22 +63,11 @@ function RotatingProjects() {
         const z = Math.sin(angle) * radius
         return (
           <Html key={index} position={[x, 0, z]} center transform occlude>
-            <div className="bg-gray-800 p-6 rounded-lg shadow-lg text-white w-96 h-64 overflow-hidden">
-              <h3 className="text-lg font-semibold mb-2">{project.title}</h3>
-              <p className="text-gray-300 mb-3 text-xs line-clamp-3">{project.description}</p>
-              <p className="text-xs text-gray-400 mb-2"><strong>Technologies:</strong> {project.technologies}</p>
-              {project.features && (
-                <div className="mb-3">
-                  <p className="text-xs font-semibold text-gray-400 mb-1">Key Features:</p>
-                  <ul className="text-xs text-gray-300 list-disc list-inside">
-                    {project.features.slice(0, 3).map((feature, i) => (
-                      <li key={i} className="line-clamp-1">{feature}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              <div className="flex space-x-4 mt-2">
-                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 text-xs">Live Demo</a>
+            <div className="bg-gray-800 p-2 rounded-lg shadow-lg text-white w-64 h-64 overflow-hidden flex flex-col justify-between">
+              <h3 className="text-sm font-semibold mb-1">{project.title}</h3>
+              <p className="text-gray-300 mb-2 text-xs line-clamp-2">{project.description.substring(0, 100)}...</p>
+              <div className="flex space-x-2 mt-auto">
+                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 text-xs">Live</a>
                 {project.githubUrl && (
                   <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 text-xs">GitHub</a>
                 )}
