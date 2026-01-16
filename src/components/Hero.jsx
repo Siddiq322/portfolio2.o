@@ -65,7 +65,7 @@ function Hero() {
           transition={{ duration: 1, delay: 1.2 }}
           className="text-lg md:text-xl mb-8"
         >
-          Explore my projects, skills, and experience in web development, cybersecurity, and data analytics.
+          
         </motion.p>
       </div>
       <motion.div
