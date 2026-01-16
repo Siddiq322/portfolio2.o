@@ -6,7 +6,7 @@ import { TextureLoader } from 'three'
 
 const RotatingCube = () => {
   const meshRef = useRef()
-  const texture = useLoader(TextureLoader, 'https://i.postimg.cc/knMSpW0r/my-image.jpg')
+  const texture = useLoader(TextureLoader, 'https://i.postimg.cc/pL1RLNqv/1.png')
 
   useFrame(({ clock }) => {
     meshRef.current.rotation.y = clock.getElapsedTime() * 0.5
@@ -53,14 +53,6 @@ function Hero() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 1.2 }}
           className="text-lg md:text-xl mb-8"
-        >
-          Data Analyst
-        </motion.p>
-        <motion.p
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, delay: 1.5 }}
-          className="text-lg md:text-xl text-gray-300 mb-12"
         >
           Explore my projects, skills, and experience in web development, cybersecurity, and data analytics.
         </motion.p>
