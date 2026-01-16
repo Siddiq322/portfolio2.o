@@ -11,7 +11,7 @@ const RotatingCube = () => {
   useEffect(() => {
     const loader = new TextureLoader()
     loader.load(
-      '/my-photo.jpg',
+      'https://i.postimg.cc/N0VLy2Gb/my-image.jpg',
       (loadedTexture) => setTexture(loadedTexture),
       undefined,
       (error) => console.log('Texture failed to load', error)
