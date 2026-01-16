@@ -47,8 +47,8 @@ function Contact() {
     <section id="contact" className="min-h-screen flex items-center justify-center pointer-events-auto py-20">
       <div className="flex flex-col md:flex-row items-center justify-center w-full max-w-6xl mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, scale: 0.5, rotate: -180 }}
-          whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+          initial={{ opacity: 0, rotateY: 180, scale: 0.3 }}
+          whileInView={{ opacity: 1, rotateY: 0, scale: 1 }}
           transition={{ duration: 1, type: 'spring', stiffness: 100 }}
           viewport={{ amount: 0.5 }}
           className="w-full md:w-1/2 mb-8 md:mb-0"
@@ -61,9 +61,9 @@ function Contact() {
           </Canvas>
         </motion.div>
         <motion.div
-          initial={{ opacity: 0, y: 100, skewY: 10 }}
-          whileInView={{ opacity: 1, y: 0, skewY: 0 }}
-          transition={{ duration: 1, delay: 0.2 }}
+          initial={{ opacity: 0, rotateX: -90, y: 100 }}
+          whileInView={{ opacity: 1, rotateX: 0, y: 0 }}
+          transition={{ duration: 1, delay: 0.2, type: 'spring' }}
           viewport={{ amount: 0.5 }}
           className="w-full md:w-1/2 text-white"
         >

@@ -30,16 +30,16 @@ function Hero() {
       </Canvas>
       <div className="absolute top-20 left-1/2 transform -translate-x-1/2 text-white pointer-events-none text-center">
         <motion.h1
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.5 }}
+          initial={{ opacity: 0, rotateY: 180, scale: 0.5 }}
+          animate={{ opacity: 1, rotateY: 0, scale: 1 }}
+          transition={{ duration: 1, delay: 0.5, type: 'spring' }}
           className="text-5xl font-bold mb-2"
         >
           Shaik Abubakar Siddiq
         </motion.h1>
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, rotateX: 90 }}
+          animate={{ opacity: 1, rotateX: 0 }}
           transition={{ duration: 1, delay: 1 }}
           className="text-xl"
         >

@@ -81,9 +81,9 @@ function Skills() {
         <RotatingSkills />
       </Canvas>
       <motion.div
-        initial={{ opacity: 0, scale: 0.8, rotate: 10 }}
-        whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-        transition={{ duration: 0.8 }}
+        initial={{ opacity: 0, rotateX: 90, scale: 0.8 }}
+        whileInView={{ opacity: 1, rotateX: 0, scale: 1 }}
+        transition={{ duration: 0.8, type: 'spring' }}
         viewport={{ amount: 0.5 }}
         className="absolute top-10 left-1/2 transform -translate-x-1/2 text-white text-center pointer-events-auto"
       >

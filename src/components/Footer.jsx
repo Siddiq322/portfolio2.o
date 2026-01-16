@@ -4,8 +4,8 @@ import { motion } from 'framer-motion'
 function Footer() {
   return (
     <motion.footer
-      initial={{ opacity: 0, x: 100 }}
-      whileInView={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0, rotateY: 90, x: 100 }}
+      whileInView={{ opacity: 1, rotateY: 0, x: 0 }}
       transition={{ duration: 0.8, type: 'spring' }}
       viewport={{ amount: 0.5 }}
       className="bg-gray-900 text-white py-8"
