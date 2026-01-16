@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef } from 'react'
 import { Canvas, useFrame, useLoader } from '@react-three/fiber'
 import { OrbitControls, Stars } from '@react-three/drei'
 import { motion } from 'framer-motion'
@@ -6,18 +6,7 @@ import { TextureLoader } from 'three'
 
 const RotatingCube = () => {
   const meshRef = useRef()
-  const [texture, setTexture] = useState(null)
-
-  useEffect(() => {
-    const loader = new TextureLoader()
-    loader.crossOrigin = 'anonymous'
-    loader.load(
-      '/images/my-photo.jpg',
-      (loadedTexture) => setTexture(loadedTexture),
-      undefined,
-      (error) => console.log('Texture failed to load', error)
-    )
-  }, [])
+  const texture = useLoader(TextureLoader, '/images/my-photo.jpg')
 
   useFrame(({ clock }) => {
     meshRef.current.rotation.y = clock.getElapsedTime() * 0.5
@@ -27,7 +16,7 @@ const RotatingCube = () => {
   return (
     <mesh ref={meshRef} position={[0, 0, 0]}>
       <boxGeometry args={[2, 2, 2]} />
-      <meshStandardMaterial map={texture} color={texture ? undefined : 'skyblue'} />
+      <meshStandardMaterial map={texture} />
     </mesh>
   )
 }
