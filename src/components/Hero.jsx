@@ -6,7 +6,7 @@ import { TextureLoader } from 'three'
 
 const RotatingCube = () => {
   const meshRef = useRef()
-  const texture = useLoader(TextureLoader, 'https://i.postimg.cc/pL1RLNqv/1.png')
+  const texture = useLoader(TextureLoader, 'https://i.postimg.cc/N0VLy2Gb/my-image.jpg')
 
   useFrame(({ clock }) => {
     meshRef.current.rotation.y = clock.getElapsedTime() * 0.5
