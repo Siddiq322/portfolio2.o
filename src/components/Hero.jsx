@@ -2,8 +2,22 @@ import React, { useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, Stars } from '@react-three/drei'
 import { motion } from 'framer-motion'
-import { useLoader } from '@react-three/fiber'
-import { TextureLoader } from 'three'
+
+function RotatingCube() {
+  const meshRef = useRef()
+
+  useFrame(({ clock }) => {
+    meshRef.current.rotation.y = clock.getElapsedTime() * 0.5
+    meshRef.current.rotation.x = clock.getElapsedTime() * 0.3
+  })
+
+  return (
+    <mesh ref={meshRef} position={[0, 0, 0]}>
+      <boxGeometry args={[2, 2, 2]} />
+      <meshStandardMaterial color="skyblue" />
+    </mesh>
+  )
+}
 
 function Hero() {
   return (
