@@ -2,12 +2,9 @@ import React, { useRef, Suspense } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, Stars } from '@react-three/drei'
 import { motion } from 'framer-motion'
-import { useLoader } from '@react-three/fiber'
-import { TextureLoader } from 'three'
 
 const RotatingCube = () => {
   const meshRef = useRef()
-  const texture = useLoader(TextureLoader, 'https://i.postimg.cc/N0VLy2Gb/my-image.jpg')
 
   useFrame(({ clock }) => {
     meshRef.current.rotation.y = clock.getElapsedTime() * 0.5
@@ -17,7 +14,7 @@ const RotatingCube = () => {
   return (
     <mesh ref={meshRef} position={[0, 0, 0]}>
       <boxGeometry args={[2, 2, 2]} />
-      <meshStandardMaterial map={texture} />
+      <meshStandardMaterial color="skyblue" />
     </mesh>
   )
 }
