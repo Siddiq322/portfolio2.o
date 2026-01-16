@@ -12,7 +12,7 @@ const RotatingCube = () => {
     const loader = new TextureLoader()
     loader.crossOrigin = 'anonymous'
     loader.load(
-      'https://i.postimg.cc/N0VLy2Gb/my-image.jpg',
+      '/images/my-photo.jpg',
       (loadedTexture) => setTexture(loadedTexture),
       undefined,
       (error) => console.log('Texture failed to load', error)
