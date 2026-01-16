@@ -54,9 +54,17 @@ function Hero() {
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 1 }}
-          className="text-xl md:text-2xl mb-8"
+          className="text-xl md:text-2xl mb-4"
         >
-          Full Stack Developer, Cybersecurity Enthusiast & Data Analyst
+          Welcome to my Portfolio
+        </motion.p>
+        <motion.p
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, delay: 1.2 }}
+          className="text-lg md:text-xl mb-8"
+        >
+          Data Analyst
         </motion.p>
         <motion.p
           initial={{ opacity: 0, x: -50 }}
