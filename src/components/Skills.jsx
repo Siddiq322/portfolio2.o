@@ -12,11 +12,11 @@ function SkillBall({ position, skill }) {
 
   return (
     <mesh ref={meshRef} position={position}>
-      <sphereGeometry args={[0.3, 32, 32]} />
+      <sphereGeometry args={[0.5, 32, 32]} />
       <meshStandardMaterial color="skyblue" />
       <Text
-        position={[0, 0.5, 0]}
-        fontSize={0.1}
+        position={[0, 0.7, 0]}
+        fontSize={0.12}
         color="white"
         anchorX="center"
         anchorY="middle"
@@ -73,7 +73,7 @@ function SkillGroup({ group }) {
     <group position={group.position}>
       {/* Category Sphere */}
       <mesh position={[0, 0, 0]}>
-        <sphereGeometry args={[1.5, 32, 32]} />
+        <sphereGeometry args={[2.2, 32, 32]} />
         <meshStandardMaterial 
           color="#4A90E2" 
           transparent 
@@ -81,7 +81,7 @@ function SkillGroup({ group }) {
           wireframe={true}
         />
         <Text
-          position={[0, 0, 1.6]}
+          position={[0, 0, 2.3]}
           fontSize={0.25}
           color="white"
           anchorX="center"
@@ -94,7 +94,7 @@ function SkillGroup({ group }) {
       {/* Skill Spheres inside the category sphere */}
       {group.skills.map((skill, index) => {
         const angle = (index / group.skills.length) * Math.PI * 2
-        const radius = 0.8 // Inside the category sphere
+        const radius = 1.2 // Inside the category sphere
         const x = Math.cos(angle) * radius
         const z = Math.sin(angle) * radius
         const y = (Math.random() - 0.5) * 0.5 // Add some vertical variation
