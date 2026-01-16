@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, Suspense } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, Stars } from '@react-three/drei'
 import { motion } from 'framer-motion'
@@ -30,7 +30,9 @@ function Hero() {
         <ambientLight intensity={0.5} />
         <directionalLight position={[0, 0, 5]} />
         <Stars />
-        <RotatingCube />
+        <Suspense fallback={null}>
+          <RotatingCube />
+        </Suspense>
       </Canvas>
       <div className="absolute top-20 left-10 text-white pointer-events-none z-10 max-w-lg">
         <motion.h1
