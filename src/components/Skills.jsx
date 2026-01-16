@@ -36,7 +36,7 @@ function RotatingSkills() {
         const x = Math.cos(angle) * radius
         const z = Math.sin(angle) * radius
         return (
-          <Html key={index} position={[x, 0, z]} center transform occlude>
+          <Html key={index} position={[x, 0, z]} center>
             <div className="bg-gray-800 p-4 rounded-lg shadow-lg text-white w-48 h-64 overflow-hidden flex flex-col">
               <h3 className="text-lg font-semibold mb-4 text-center">{group.category}</h3>
               <ul className="text-sm text-gray-300 list-decimal list-inside space-y-1">
@@ -74,7 +74,7 @@ function Skills() {
 
   return (
     <section id="skills" className="h-screen relative overflow-hidden flex items-center justify-center">
-      <Canvas camera={{ position: [0, 2, 10] }} className="pointer-events-none absolute inset-0" style={{ height: '100%', width: '100%' }}>
+      <Canvas camera={{ position: [0, 2, 10] }} className="pointer-events-none absolute inset-0" style={{ height: '100%', width: '100%' }} gl={{ clearColor: 'black' }}>
         <OrbitControls enableZoom={true} enablePan={false} minDistance={5} maxDistance={20} />
         <ambientLight intensity={0.7} />
         <directionalLight position={[0, 0, 5]} />

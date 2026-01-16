@@ -62,7 +62,7 @@ function RotatingProjects() {
         const x = Math.cos(angle) * radius
         const z = Math.sin(angle) * radius
         return (
-          <Html key={index} position={[x, 0, z]} center transform occlude>
+          <Html key={index} position={[x, 0, z]} center>
             <div className="bg-gray-800 p-2 rounded-lg shadow-lg text-white w-40 h-56 overflow-hidden flex flex-col justify-between">
               <h3 className="text-xs font-semibold mb-1">{project.title}</h3>
               <p className="text-gray-300 mb-1 text-xs">{project.description.substring(0, 60)}...</p>
@@ -84,7 +84,7 @@ function RotatingProjects() {
 function Projects() {
   return (
     <section id="projects" className="h-screen relative overflow-hidden flex items-center justify-center">
-      <Canvas camera={{ position: [0, 2, 10] }} className="pointer-events-none absolute inset-0" style={{ height: '100%', width: '100%' }}>
+      <Canvas camera={{ position: [0, 2, 10] }} className="pointer-events-none absolute inset-0" style={{ height: '100%', width: '100%' }} gl={{ clearColor: 'black' }}>
         <OrbitControls enableZoom={true} enablePan={false} minDistance={5} maxDistance={20} />
         <ambientLight intensity={0.7} />
         <directionalLight position={[0, 0, 5]} />
