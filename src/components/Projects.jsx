@@ -1,16 +1,7 @@
-import React, { useRef } from 'react'
-import { Canvas, useFrame } from '@react-three/fiber'
-import { OrbitControls, Html } from '@react-three/drei'
+import React from 'react'
 import { motion } from 'framer-motion'
 
-function RotatingProjects() {
-  const groupRef = useRef()
-
-  useFrame(({ clock }) => {
-    groupRef.current.rotation.y = clock.getElapsedTime() * 0.2 // Slow rotation
-  })
-
-  const radius = 6
+function Projects() {
   const projects = [
     {
       title: 'ChatFlow - Real-Time Chat Application',
@@ -57,50 +48,49 @@ function RotatingProjects() {
   ]
 
   return (
-    <group ref={groupRef}>
-      {projects.map((project, index) => {
-        const angle = (index / projects.length) * Math.PI * 2
-        const x = Math.cos(angle) * radius
-        const z = Math.sin(angle) * radius
-        return (
-          <Html key={index} position={[x, 0, z]} center>
-            <div className="bg-gray-800 p-2 rounded-lg shadow-lg text-white w-40 h-56 overflow-hidden flex flex-col justify-between">
-              <h3 className="text-xs font-semibold mb-1">{project.title}</h3>
-              <p className="text-gray-300 mb-1 text-xs">{project.description.substring(0, 60)}...</p>
-              <p className="text-xs text-gray-400 mb-1"><strong>Tech:</strong> {project.technologies.substring(0, 30)}...</p>
-              <div className="flex space-x-1 mt-auto">
-                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 text-xs">Live</a>
-                {project.githubUrl && (
-                  <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 text-xs">GitHub</a>
+    <section id="projects" className="h-screen relative overflow-hidden flex items-center justify-center bg-black py-20">
+      <div className="text-center max-w-7xl mx-auto px-6">
+        <motion.h2
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ amount: 0.5 }}
+          className="text-4xl font-bold text-white mb-12"
+        >
+          My Projects
+        </motion.h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: index * 0.2 }}
+              viewport={{ amount: 0.5 }}
+              className="bg-gray-800 p-6 rounded-lg shadow-lg text-white flex flex-col justify-between"
+            >
+              <div>
+                <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+                <p className="text-gray-300 mb-2 text-sm">{project.description.substring(0, 100)}...</p>
+                <p className="text-xs text-gray-400 mb-2"><strong>Tech:</strong> {project.technologies.substring(0, 50)}...</p>
+                {project.features && (
+                  <ul className="text-xs text-gray-300 list-disc list-inside space-y-1 mb-4">
+                    {project.features.slice(0, 3).map((feature, i) => (
+                      <li key={i}>{feature}</li>
+                    ))}
+                  </ul>
                 )}
               </div>
-            </div>
-          </Html>
-        )
-      })}
-    </group>
-  )
-}
-
-function Projects() {
-  return (
-    <section id="projects" className="h-screen relative overflow-hidden flex items-center justify-center">
-      <Canvas camera={{ position: [0, 2, 10] }} className="pointer-events-none absolute inset-0" style={{ height: '100%', width: '100%' }} gl={{ clearColor: 'black' }}>
-        <OrbitControls enableZoom={true} enablePan={false} minDistance={5} maxDistance={20} />
-        <ambientLight intensity={0.7} />
-        <directionalLight position={[0, 0, 5]} />
-        <RotatingProjects />
-      </Canvas>
-      <motion.div
-        initial={{ opacity: 0, y: -30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ amount: 0.5 }}
-        className="absolute top-10 left-1/2 transform -translate-x-1/2 text-white text-center pointer-events-auto"
-      >
-        <h2 className="text-4xl font-bold">My Projects</h2>
-        <p className="text-lg mt-2">Drag to rotate, scroll to zoom in/out</p>
-      </motion.div>
+              <div className="flex space-x-2 mt-4">
+                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 text-sm">Live Demo</a>
+                {project.githubUrl && (
+                  <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 text-sm">GitHub</a>
+                )}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
     </section>
   )
 }

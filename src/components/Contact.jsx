@@ -1,23 +1,6 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Canvas, useFrame } from '@react-three/fiber'
-import { OrbitControls } from '@react-three/drei'
 import emailjs from '@emailjs/browser'
-
-function Earth() {
-  const meshRef = useRef()
-
-  useFrame(({ clock }) => {
-    meshRef.current.rotation.y = clock.getElapsedTime() * 0.2
-  })
-
-  return (
-    <mesh ref={meshRef}>
-      <sphereGeometry args={[1, 32, 32]} />
-      <meshStandardMaterial color="#4A90E2" />
-    </mesh>
-  )
-}
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -44,21 +27,31 @@ function Contact() {
   }
 
   return (
-    <section id="contact" className="min-h-screen flex items-center justify-center pointer-events-auto py-20">
+    <section id="contact" className="min-h-screen flex items-center justify-center pointer-events-auto py-20 bg-black">
       <div className="flex flex-col md:flex-row items-center justify-center w-full max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ amount: 0.5 }}
-          className="w-full md:w-1/2 mb-8 md:mb-0"
+          className="w-full md:w-1/2 mb-8 md:mb-0 text-center"
         >
-          <Canvas camera={{ position: [0, 0, 3] }} className="h-96">
-            <OrbitControls enableZoom={false} />
-            <ambientLight intensity={0.5} />
-            <directionalLight position={[0, 0, 5]} />
-            <Earth />
-          </Canvas>
+          <div className="text-white">
+            <h3 className="text-2xl font-bold mb-4">Let's Connect</h3>
+            <p className="text-gray-300 mb-6">I'm always open to discussing new opportunities, collaborations, or just having a chat about technology.</p>
+            <div className="space-y-2 text-gray-300">
+              <p><strong>Email:</strong> siddiqshaik613@gmail.com</p>
+              <p><strong>Phone:</strong> +91 9951532862</p>
+              <p><strong>Location:</strong> India</p>
+            </div>
+            <div className="mt-6">
+              <h4 className="text-xl font-semibold mb-2">Connect With Me</h4>
+              <div className="flex space-x-4 justify-center">
+                <a href="https://github.com/Siddiq322" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300">GitHub</a>
+                <a href="https://www.linkedin.com/in/shaik-siddiq-917483370/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300">LinkedIn</a>
+              </div>
+            </div>
+          </div>
         </motion.div>
         <motion.div
           initial={{ opacity: 0, x: 50 }}
@@ -68,23 +61,6 @@ function Contact() {
           className="w-full md:w-1/2 text-white"
         >
           <h2 className="text-4xl font-bold mb-8">Get In Touch</h2>
-          <div className="mb-8 space-y-4">
-            <div>
-              <h3 className="text-xl font-semibold mb-2">Contact Information</h3>
-              <div className="space-y-2 text-gray-300">
-                <p><strong>Email:</strong> siddiqshaik613@gmail.com</p>
-                <p><strong>Phone:</strong> +91 9951532862</p>
-                <p><strong>Location:</strong> India</p>
-              </div>
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold mb-2">Connect With Me</h3>
-              <div className="flex space-x-4">
-                <a href="https://github.com/Siddiq322" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300">GitHub</a>
-                <a href="https://www.linkedin.com/in/shaik-siddiq-917483370/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300">LinkedIn</a>
-              </div>
-            </div>
-          </div>
           <form onSubmit={handleSubmit} className="space-y-4">
             <input
               type="text"
