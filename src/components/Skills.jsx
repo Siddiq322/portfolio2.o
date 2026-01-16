@@ -1,29 +1,54 @@
 import React, { useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { OrbitControls, Text } from '@react-three/drei'
+import { OrbitControls, Html } from '@react-three/drei'
 
-function SkillBall({ position, skill }) {
-  const meshRef = useRef()
+function RotatingSkills() {
+  const groupRef = useRef()
 
   useFrame(({ clock }) => {
-    meshRef.current.rotation.x = clock.getElapsedTime() * 0.5
-    meshRef.current.rotation.y = clock.getElapsedTime() * 0.5
+    groupRef.current.rotation.y = clock.getElapsedTime() * 0.15 // Slow rotation
   })
 
+  const radius = 5
+  const skillGroups = [
+    {
+      category: 'Web Development',
+      skills: ['HTML', 'CSS', 'JavaScript', 'React']
+    },
+    {
+      category: 'Cybersecurity',
+      skills: ['Kali Linux', 'Maltego']
+    },
+    {
+      category: 'Data Analytics',
+      skills: ['Python', 'SQL']
+    },
+    {
+      category: 'Tools & Platforms',
+      skills: ['Figma', 'GitHub', 'VS Code', 'Lovable']
+    }
+  ]
+
   return (
-    <mesh ref={meshRef} position={position}>
-      <sphereGeometry args={[0.5, 32, 32]} />
-      <meshStandardMaterial color="skyblue" />
-      <Text
-        position={[0, 0.7, 0]}
-        fontSize={0.12}
-        color="white"
-        anchorX="center"
-        anchorY="middle"
-      >
-        {skill}
-      </Text>
-    </mesh>
+    <group ref={groupRef}>
+      {skillGroups.map((group, index) => {
+        const angle = (index / skillGroups.length) * Math.PI * 2
+        const x = Math.cos(angle) * radius
+        const z = Math.sin(angle) * radius
+        return (
+          <Html key={index} position={[x, 0, z]} center transform occlude>
+            <div className="bg-gray-800 p-4 rounded-lg shadow-lg text-white w-48 h-64 overflow-hidden flex flex-col">
+              <h3 className="text-lg font-semibold mb-4 text-center">{group.category}</h3>
+              <ul className="text-sm text-gray-300 list-decimal list-inside space-y-1">
+                {group.skills.map((skill, i) => (
+                  <li key={i}>{skill}</li>
+                ))}
+              </ul>
+            </div>
+          </Html>
+        )
+      })}
+    </group>
   )
 }
 
@@ -31,82 +56,35 @@ function Skills() {
   const skillGroups = [
     {
       category: 'Web Development',
-      skills: ['HTML', 'CSS', 'JavaScript', 'React', 'Tailwind'],
-      position: [-3, 0, 3] // Top-left vertex
+      skills: ['HTML', 'CSS', 'JavaScript', 'React']
     },
     {
       category: 'Cybersecurity',
-      skills: ['Kali Linux', 'Maltego'],
-      position: [3, 0, 3] // Top-right vertex
+      skills: ['Kali Linux', 'Maltego']
     },
     {
       category: 'Data Analytics',
-      skills: ['Python', 'SQL'],
-      position: [-3, 0, -3] // Bottom-left vertex
+      skills: ['Python', 'SQL']
     },
     {
       category: 'Tools & Platforms',
-      skills: ['Figma', 'GitHub', 'VS Code', 'Lovable'],
-      position: [3, 0, -3] // Bottom-right vertex
+      skills: ['Figma', 'GitHub', 'VS Code', 'Lovable']
     }
   ]
 
   return (
-    <section id="skills" className="h-screen relative overflow-hidden pb-20 flex items-center justify-center">
-      <Canvas camera={{ position: [0, 2, 6] }} className="pointer-events-none absolute inset-0" style={{ height: '100%', width: '100%' }} gl={{ alpha: true, clearColor: 'black' }}>
-        <OrbitControls enableZoom={false} />
+    <section id="skills" className="h-screen relative overflow-hidden flex items-center justify-center">
+      <Canvas camera={{ position: [0, 2, 8] }} className="pointer-events-none absolute inset-0" style={{ height: '100%', width: '100%' }} gl={{ alpha: true, clearColor: 'black' }}>
+        <OrbitControls enableZoom={false} enablePan={false} />
         <ambientLight intensity={0.7} />
         <directionalLight position={[0, 0, 5]} />
-        {skillGroups.map((group, groupIndex) => (
-          <SkillGroup key={group.category} group={group} />
-        ))}
+        <RotatingSkills />
       </Canvas>
-      <div className="absolute top-10 left-1/2 transform -translate-x-1/2 text-white text-center">
+      <div className="absolute top-10 left-1/2 transform -translate-x-1/2 text-white text-center pointer-events-auto">
         <h2 className="text-4xl font-bold">My Skills</h2>
+        <p className="text-lg mt-2">Drag to rotate and explore</p>
       </div>
     </section>
-  )
-}
-
-function SkillGroup({ group }) {
-  return (
-    <group position={group.position}>
-      {/* Category Sphere */}
-      <mesh position={[0, 0, 0]}>
-        <sphereGeometry args={[2.2, 32, 32]} />
-        <meshStandardMaterial 
-          color="#4A90E2" 
-          transparent 
-          opacity={0.15} 
-          wireframe={true}
-        />
-        <Text
-          position={[0, 0, 2.3]}
-          fontSize={0.25}
-          color="white"
-          anchorX="center"
-          anchorY="middle"
-        >
-          {group.category}
-        </Text>
-      </mesh>
-      
-      {/* Skill Spheres inside the category sphere */}
-      {group.skills.map((skill, index) => {
-        const angle = (index / group.skills.length) * Math.PI * 2
-        const radius = 1.2 // Inside the category sphere
-        const x = Math.cos(angle) * radius
-        const z = Math.sin(angle) * radius
-        const y = (Math.random() - 0.5) * 0.5 // Add some vertical variation
-        return (
-          <SkillBall
-            key={skill}
-            position={[x, y, z]}
-            skill={skill}
-          />
-        )
-      })}
-    </group>
   )
 }
 
