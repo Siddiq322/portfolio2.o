@@ -85,14 +85,14 @@ function Projects() {
   return (
     <section id="projects" className="h-screen relative overflow-hidden flex items-center justify-center">
       <Canvas camera={{ position: [0, 2, 10] }} className="pointer-events-none absolute inset-0" style={{ height: '100%', width: '100%' }} gl={{ alpha: true, clearColor: 'black' }}>
-        <OrbitControls enableZoom={false} enablePan={false} />
+        <OrbitControls enableZoom={true} enablePan={false} />
         <ambientLight intensity={0.7} />
         <directionalLight position={[0, 0, 5]} />
         <RotatingProjects />
       </Canvas>
       <div className="absolute top-10 left-1/2 transform -translate-x-1/2 text-white text-center pointer-events-auto">
         <h2 className="text-4xl font-bold">My Projects</h2>
-        <p className="text-lg mt-2">Drag to rotate and explore</p>
+        <p className="text-lg mt-2">Drag to rotate, scroll to zoom in/out</p>
       </div>
     </section>
   )
