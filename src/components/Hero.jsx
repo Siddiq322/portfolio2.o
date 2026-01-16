@@ -49,7 +49,7 @@ function Hero() {
           transition={{ duration: 1, delay: 1 }}
           className="text-xl md:text-2xl mb-8"
         >
-          Welcome to my Portfolio
+          Full Stack Developer, Cybersecurity Enthusiast & Data Analyst
         </motion.p>
         <motion.p
           initial={{ opacity: 0, x: -50 }}
@@ -57,7 +57,7 @@ function Hero() {
           transition={{ duration: 1, delay: 1.5 }}
           className="text-lg md:text-xl text-gray-300 mb-12"
         >
-          Explore my projects, skills, and experience in web development and cybersecurity.
+          Explore my projects, skills, and experience in web development, cybersecurity, and data analytics.
         </motion.p>
       </div>
       <motion.div
