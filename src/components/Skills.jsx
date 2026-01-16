@@ -32,30 +32,30 @@ function Skills() {
     {
       category: 'Web Development',
       skills: ['HTML', 'CSS', 'JavaScript', 'React', 'Tailwind'],
-      position: [-2, 0, 2] // Top-left
+      position: [-3, 0, 3] // Top-left vertex
     },
     {
       category: 'Cybersecurity',
       skills: ['Kali Linux', 'Maltego'],
-      position: [2, 0, 2] // Top-right
+      position: [3, 0, 3] // Top-right vertex
     },
     {
       category: 'Data Analytics',
       skills: ['Python', 'SQL'],
-      position: [-2, 0, -2] // Bottom-left
+      position: [-3, 0, -3] // Bottom-left vertex
     },
     {
       category: 'Tools & Platforms',
       skills: ['Figma', 'GitHub', 'VS Code', 'Lovable'],
-      position: [2, 0, -2] // Bottom-right
+      position: [3, 0, -3] // Bottom-right vertex
     }
   ]
 
   return (
     <section id="skills" className="h-screen relative pb-20">
-      <Canvas camera={{ position: [0, 0, 8] }} className="pointer-events-none" gl={{ alpha: true, clearColor: 'black' }}>
+      <Canvas camera={{ position: [0, 2, 6] }} className="pointer-events-none" gl={{ alpha: true, clearColor: 'black' }}>
         <OrbitControls enableZoom={false} />
-        <ambientLight intensity={0.5} />
+        <ambientLight intensity={0.7} />
         <directionalLight position={[0, 0, 5]} />
         {skillGroups.map((group, groupIndex) => (
           <SkillGroup key={group.category} group={group} />
