@@ -53,6 +53,22 @@ const RotatingProjects = () => {
       ],
       liveUrl: 'https://secureguard-6idy.onrender.com/',
       githubUrl: null
+    },
+    {
+      title: 'Self Planner – A Progress-Aware Personal Planning System',
+      description: 'Self Planner is a web application that helps users plan their daily work, check or uncheck completed tasks, and clearly understand their progress. Tasks added in the daily plan automatically reflect on the progress page, allowing users to know what is done and what is still pending, without focusing on strict time limits.',
+      technologies: 'React 18 with TypeScript, Vite, Tailwind CSS, shadcn/ui, Framer Motion, React Query, React Router, Node.js, Express.js, MongoDB, Mongoose, JWT, bcryptjs',
+      features: [
+        'Daily task planning and management',
+        'Task completion tracking with check/uncheck',
+        'Progress visualization without strict time limits',
+        'Automatic reflection of tasks on progress page',
+        'Frontend: React 18, TypeScript, Vite, Tailwind CSS, shadcn/ui, Framer Motion, React Query, React Router',
+        'Backend: Node.js, Express.js, MongoDB, Mongoose, JWT, bcryptjs',
+        'Deployed on Render with MongoDB Atlas'
+      ],
+      liveUrl: 'https://smartlearner-5660.onrender.com/',
+      githubUrl: null
     }
   ]
 
